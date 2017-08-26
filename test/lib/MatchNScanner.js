@@ -339,6 +339,42 @@ describe('lib/MatchNScanner', function() {
         ]);
       });
     });
+
+    describe('options.sieve', function() {
+      it('should be executed correctly', function() {
+        const matrix = createMatrixFromMapText([
+          '    ',
+          ' AB ',
+          ' A  ',
+        ].join('\n'));
+        const instance = new MatchNScanner(matrix);
+
+        const matches = instance.scan({
+          sieve: (element) => element !== ' ',
+        });
+        assert.deepEqual(matches, [
+          [
+            {
+              element: 'A',
+              rowIndex: 1,
+              columnIndex: 1,
+            },
+            {
+              element: 'A',
+              rowIndex: 2,
+              columnIndex: 1,
+            },
+          ],
+          [
+            {
+              element: 'B',
+              rowIndex: 1,
+              columnIndex: 2,
+            },
+          ],
+        ]);
+      });
+    });
   });
 
   describe('constructor', function() {
