@@ -23,24 +23,23 @@ describe('lib/MatchNScanner', function() {
     });
   };
 
-  const sortIndexedElements = (indexedElements/*: IndexedElement[]*/) => {
-    indexedElements.sort((a, b) => {
-      if (a.rowIndex !== b.rowIndex) {
-        return a.rowIndex - b.rowIndex;
-      }
-      return a.columnIndex - b.columnIndex;
-    });
-  };
-
   describe('_scanAroundRecursively', function() {
+    const sortIndexedElements = (indexedElements/*: IndexedElement[]*/) => {
+      indexedElements.sort((a, b) => {
+        if (a.rowIndex !== b.rowIndex) {
+          return a.rowIndex - b.rowIndex;
+        }
+        return a.columnIndex - b.columnIndex;
+      });
+    };
+
     describe('In the case of a horizontal straight line', function() {
       const matrix = createMatrixFromMapText([
         'AAA',
       ].join('\n'));
       const instance = new MatchNScanner(matrix);
       const expected = [
-        {
-          element: 'A',
+        { element: 'A',
           rowIndex: 0,
           columnIndex: 0,
         },
