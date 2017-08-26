@@ -1,7 +1,7 @@
 {
-  "name": "match-n-finder",
+  "name": "match-n-scanner",
   "version": "0.0.0",
-  "description": "Find the concatenation of the same value from the matrix",
+  "description": "Scan the matrix and return parts where the same values are connected",
   "main": "index.js",
   "scripts": {
     "flow": "$(npm bin)/flow",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kjirou/match-n-finder.git"
+    "url": "git+https://github.com/kjirou/match-n-scanner.git"
   },
   "keywords": [
     "game"
@@ -18,9 +18,9 @@
   "author": "kjirou",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kjirou/match-n-finder/issues"
+    "url": "https://github.com/kjirou/match-n-scanner/issues"
   },
-  "homepage": "https://github.com/kjirou/match-n-finder#readme",
+  "homepage": "https://github.com/kjirou/match-n-scanner#readme",
   "devDependencies": {
     "flow-bin": "0.53.1",
     "mocha": "3.5.0"

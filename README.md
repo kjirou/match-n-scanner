@@ -1,2 +1,3 @@
-# match-n-finder
-Find the concatenation of the same value from the matrix.
+# match-n-scanner
+
+Scan the matrix and return parts where the same values are connected.
