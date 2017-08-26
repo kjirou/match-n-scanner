@@ -4,7 +4,9 @@
   "description": "Find the concatenation of the same value from the matrix",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "flow": "$(npm bin)/flow",
+    "prepublish": "npm run flow && npm run test",
+    "test": "$(npm bin)/mocha --recursive"
   },
   "repository": {
     "type": "git",
@@ -20,7 +22,7 @@
   },
   "homepage": "https://github.com/kjirou/match-n-finder#readme",
   "devDependencies": {
-    "flow-bin": "^0.53.1",
-    "mocha": "^3.5.0"
+    "flow-bin": "0.53.1",
+    "mocha": "3.5.0"
   }
 }
