@@ -262,15 +262,88 @@ describe('lib/MatchNScanner', function() {
         assert.deepEqual(matched, expected);
       });
     });
+  });
 
-    describe('In the case of a combination of points or straight lines', function() {
-      beforeEach(function() {
-        this._matrix = createMatrixFromMapText([
-          'ABB',
-          'ACD',
-          'ACE',
-          'FFF',
-        ].join('\n'));
+  describe('scan', function() {
+    describe('In the case of only one element type', function() {
+      const matrix = createMatrixFromMapText([
+        'AA',
+        'AA',
+      ].join('\n'));
+      const instance = new MatchNScanner(matrix);
+
+      it('should be executed correctly', function() {
+        assert.deepEqual(instance.scan(), [
+          [
+            {
+              element: 'A',
+              rowIndex: 0,
+              columnIndex: 0,
+            },
+            {
+              element: 'A',
+              rowIndex: 0,
+              columnIndex: 1,
+            },
+            {
+              element: 'A',
+              rowIndex: 1,
+              columnIndex: 0,
+            },
+            {
+              element: 'A',
+              rowIndex: 1,
+              columnIndex: 1,
+            },
+          ],
+        ]);
+      });
+    });
+
+    describe('In the case of two element types', function() {
+      const matrix = createMatrixFromMapText([
+        'AAB',
+        'ABB',
+      ].join('\n'));
+      const instance = new MatchNScanner(matrix);
+
+      it('should be executed correctly', function() {
+        assert.deepEqual(instance.scan(), [
+          [
+            {
+              element: 'A',
+              rowIndex: 0,
+              columnIndex: 0,
+            },
+            {
+              element: 'A',
+              rowIndex: 0,
+              columnIndex: 1,
+            },
+            {
+              element: 'A',
+              rowIndex: 1,
+              columnIndex: 0,
+            },
+          ],
+          [
+            {
+              element: 'B',
+              rowIndex: 0,
+              columnIndex: 2,
+            },
+            {
+              element: 'B',
+              rowIndex: 1,
+              columnIndex: 1,
+            },
+            {
+              element: 'B',
+              rowIndex: 1,
+              columnIndex: 2,
+            },
+          ],
+        ]);
       });
     });
   });
