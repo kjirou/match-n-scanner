@@ -1,0 +1,26 @@
+{
+  "name": "match-n-finder",
+  "version": "0.0.0",
+  "description": "Find the concatenation of the same value from the matrix",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kjirou/match-n-finder.git"
+  },
+  "keywords": [
+    "game"
+  ],
+  "author": "kjirou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kjirou/match-n-finder/issues"
+  },
+  "homepage": "https://github.com/kjirou/match-n-finder#readme",
+  "devDependencies": {
+    "flow-bin": "^0.53.1",
+    "mocha": "^3.5.0"
+  }
+}
