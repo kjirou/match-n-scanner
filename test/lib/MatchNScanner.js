@@ -3,14 +3,14 @@
 const assert = require('assert');
 const {beforeEach, describe, it} = require('mocha');
 
-const MatchNFinder = require('../../lib/MatchNFinder');
+const MatchNScanner = require('../../lib/MatchNScanner');
 
 /*::
-import type {IndexedElement, Matrix} from '../../lib/MatchNFinder';
+import type {IndexedElement, Matrix} from '../../lib/MatchNScanner';
  */
 
 
-describe('lib/MatchNFinder', function() {
+describe('lib/MatchNScanner', function() {
   const createMatrixFromMapText = (mapText/*: string*/)/*: Matrix*/ => {
     const symbols = mapText
       .split('\n')
@@ -37,7 +37,7 @@ describe('lib/MatchNFinder', function() {
       const matrix = createMatrixFromMapText([
         'AAA',
       ].join('\n'));
-      const instance = new MatchNFinder(matrix);
+      const instance = new MatchNScanner(matrix);
 
       it('can scan from the left', function() {
         const matched = instance._scanAroundRecursively([
@@ -121,7 +121,7 @@ describe('lib/MatchNFinder', function() {
         'A',
         'A',
       ].join('\n'));
-      const instance = new MatchNFinder(matrix);
+      const instance = new MatchNScanner(matrix);
 
       it('can scan from the top', function() {
         const matched = instance._scanAroundRecursively([
@@ -205,7 +205,7 @@ describe('lib/MatchNFinder', function() {
         'A',
         'A',
       ].join('\n'));
-      const instance = new MatchNFinder(matrix);
+      const instance = new MatchNScanner(matrix);
     });
 
     describe('In the case of a combination of points or straight lines', function() {
