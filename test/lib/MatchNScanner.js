@@ -504,4 +504,94 @@ describe('lib/MatchNScanner', function() {
       });
     });
   });
+
+  describe('static fromText', function() {
+    it('can parse some kinds of new line characters', function() {
+      const text = 'A\nA\r\nA\rA';
+      const instance = MatchNScanner.fromText(text);
+
+      assert.deepEqual(instance.scan(), [
+        [
+          {
+            element: 'A',
+            rowIndex: 0,
+            columnIndex: 0,
+          },
+          {
+            element: 'A',
+            rowIndex: 1,
+            columnIndex: 0,
+          },
+          {
+            element: 'A',
+            rowIndex: 2,
+            columnIndex: 0,
+          },
+          {
+            element: 'A',
+            rowIndex: 3,
+            columnIndex: 0,
+          },
+        ],
+      ]);
+    });
+
+    it('should ignore the last new line character', function() {
+      const text = 'A\nA\n';
+      const instance = MatchNScanner.fromText(text);
+
+      assert.deepEqual(instance.scan(), [
+        [
+          {
+            element: 'A',
+            rowIndex: 0,
+            columnIndex: 0,
+          },
+          {
+            element: 'A',
+            rowIndex: 1,
+            columnIndex: 0,
+          },
+        ],
+      ]);
+    });
+
+    it('can be received options of constructor', function() {
+      const text = 'AA\nBC';
+      const instance = MatchNScanner.fromText(text, {
+        equalityChecker: (a, b) => false,
+      });
+
+      assert.deepEqual(instance.scan(), [
+        [
+          {
+            element: 'A',
+            rowIndex: 0,
+            columnIndex: 0,
+          },
+        ],
+        [
+          {
+            element: 'A',
+            rowIndex: 0,
+            columnIndex: 1,
+          },
+        ],
+        [
+          {
+            element: 'B',
+            rowIndex: 1,
+            columnIndex: 0,
+          },
+        ],
+        [
+          {
+            element: 'C',
+            rowIndex: 1,
+            columnIndex: 1,
+          },
+        ],
+      ]);
+    });
+  });
 });
