@@ -348,6 +348,28 @@ describe('lib/MatchNScanner', function() {
   });
 
   describe('constructor', function() {
+    it('should raise an error when the matrix is wrong', function() {
+      assert.throws(() => {
+        new MatchNScanner(undefined);
+      }, / matrix /);
+
+      assert.throws(() => {
+        new MatchNScanner([]);
+      }, / matrix /);
+
+      assert.throws(() => {
+        new MatchNScanner([[]]);
+      }, / matrix /);
+
+      assert.throws(() => {
+        new MatchNScanner([[1], []]);
+      }, / matrix /);
+
+      assert.throws(() => {
+        new MatchNScanner([[1], [1, 1]]);
+      }, / matrix /);
+    });
+
     describe('options.equalityChecker', function() {
       it('should be executed correctly', function() {
         const matrix = createMatrixFromMapText([
