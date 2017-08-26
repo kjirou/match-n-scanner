@@ -346,4 +346,43 @@ describe('lib/MatchNScanner', function() {
       });
     });
   });
+
+  describe('constructor', function() {
+    describe('options.equalityChecker', function() {
+      it('should be executed correctly', function() {
+        const matrix = createMatrixFromMapText([
+          'ABC',
+        ].join('\n'));
+        const instance = new MatchNScanner(matrix, {
+          equalityChecker: (a, b) => {
+            return a === b ||
+              a === 'A' && b === 'B' ||
+              a === 'B' && b === 'A';
+          }
+        });
+
+        assert.deepEqual(instance.scan(), [
+          [
+            {
+              element: 'A',
+              rowIndex: 0,
+              columnIndex: 0,
+            },
+            {
+              element: 'B',
+              rowIndex: 0,
+              columnIndex: 1,
+            },
+          ],
+          [
+            {
+              element: 'C',
+              rowIndex: 0,
+              columnIndex: 2,
+            },
+          ],
+        ]);
+      });
+    });
+  });
 });
