@@ -53,6 +53,25 @@ Sorry, see [tests](/test/lib/MatchNScanner.js) or [source code](/lib/MatchNScann
 
 ### MatchNScanner class
 #### constructor(matrix, options = {})
+
+```
+options: {
+  // Expression for checking whether elements are equal
+  equalityChecker?: (elementA, elementB) => boolean,
+} = {};
+```
+
 #### fromText(matrixAsText, options = {})
+
 ### MatchNScanner instance
 #### scan(options = {})
+
+```
+options: {
+  // Minimum length to return
+  minMatchLength?: number,
+
+  // If it returns false, this element will be ignored
+  sieve?: (any) => boolean,
+} = {}
+```
