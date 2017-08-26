@@ -1,6 +1,6 @@
 {
   "name": "match-n-scanner",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Scan the matrix and return parts where equal values are connected",
   "main": "index.js",
   "scripts": {
