@@ -1,7 +1,7 @@
 {
   "name": "match-n-scanner",
   "version": "0.0.0",
-  "description": "Scan the matrix and return parts where the same values are connected",
+  "description": "Scan the matrix and return parts where equal values are connected",
   "main": "index.js",
   "scripts": {
     "flow": "$(npm bin)/flow",
