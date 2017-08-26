@@ -1,17 +1,11 @@
-// @flow
-
 const assert = require('assert');
 const {beforeEach, describe, it} = require('mocha');
 
 const MatchNScanner = require('../../lib/MatchNScanner');
 
-/*::
-import type {IndexedElement, Matrix} from '../../lib/MatchNScanner';
- */
-
 
 describe('lib/MatchNScanner', function() {
-  const createMatrixFromMapText = (mapText/*: string*/)/*: Matrix*/ => {
+  const createMatrixFromMapText = (mapText) => {
     const symbols = mapText
       .split('\n')
       .map(line => line.split(''));
@@ -24,7 +18,7 @@ describe('lib/MatchNScanner', function() {
   };
 
   describe('_scanAroundRecursively', function() {
-    const sortIndexedElements = (indexedElements/*: IndexedElement[]*/) => {
+    const sortIndexedElements = (indexedElements) => {
       indexedElements.sort((a, b) => {
         if (a.rowIndex !== b.rowIndex) {
           return a.rowIndex - b.rowIndex;
