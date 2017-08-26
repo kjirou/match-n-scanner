@@ -13,7 +13,9 @@
     "url": "git+https://github.com/kjirou/match-n-scanner.git"
   },
   "keywords": [
-    "game"
+    "game",
+    "match-3",
+    "match-three"
   ],
   "author": "kjirou",
   "license": "MIT",
