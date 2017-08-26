@@ -348,8 +348,8 @@ describe('lib/MatchNScanner', function() {
         ].join('\n'));
         const instance = new MatchNScanner(matrix);
 
-        const matchesAbove2Length = instance.scan({minMatchLength: 2});
-        assert.deepEqual(matchesAbove2Length, [
+        const matchesOf2OrMore = instance.scan({minMatchLength: 2});
+        assert.deepEqual(matchesOf2OrMore, [
           [
             {
               element: 'B',
@@ -381,8 +381,8 @@ describe('lib/MatchNScanner', function() {
           ],
         ]);
 
-        const matchesAbove3Length = instance.scan({minMatchLength: 3});
-        assert.deepEqual(matchesAbove3Length, [
+        const matchesOf3OrMore = instance.scan({minMatchLength: 3});
+        assert.deepEqual(matchesOf3OrMore, [
           [
             {
               element: 'C',
@@ -402,8 +402,8 @@ describe('lib/MatchNScanner', function() {
           ],
         ]);
 
-        const matchesAbove4Length = instance.scan({minMatchLength: 4});
-        assert.deepEqual(matchesAbove4Length, []);
+        const matchesOf4OrMore = instance.scan({minMatchLength: 4});
+        assert.deepEqual(matchesOf4OrMore, []);
       });
     });
 
