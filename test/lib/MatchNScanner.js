@@ -185,6 +185,84 @@ describe('lib/MatchNScanner', function() {
       });
     });
 
+    describe('In the case of a nested tree', function() {
+      const matrix = createMatrixFromMapText([
+        'A A ',
+        'AAAA',
+        'A A ',
+      ].join('\n'));
+      const instance = new MatchNScanner(matrix);
+      const expected = [
+        {
+          element: 'A',
+          rowIndex: 0,
+          columnIndex: 0,
+        },
+        {
+          element: 'A',
+          rowIndex: 0,
+          columnIndex: 2,
+        },
+        {
+          element: 'A',
+          rowIndex: 1,
+          columnIndex: 0,
+        },
+        {
+          element: 'A',
+          rowIndex: 1,
+          columnIndex: 1,
+        },
+        {
+          element: 'A',
+          rowIndex: 1,
+          columnIndex: 2,
+        },
+        {
+          element: 'A',
+          rowIndex: 1,
+          columnIndex: 3,
+        },
+        {
+          element: 'A',
+          rowIndex: 2,
+          columnIndex: 0,
+        },
+        {
+          element: 'A',
+          rowIndex: 2,
+          columnIndex: 2,
+        },
+      ];
+
+      it('can scan from the edge of top', function() {
+        const matched = instance._scanAroundRecursively([
+          instance._getIndexedElement(0, 2),
+        ]);
+        sortIndexedElements(matched);
+
+        assert.deepEqual(matched, expected);
+      });
+
+      it('can scan from the edge of left', function() {
+        const matched = instance._scanAroundRecursively([
+          instance._getIndexedElement(1, 0),
+        ]);
+        sortIndexedElements(matched);
+
+        assert.deepEqual(matched, expected);
+      });
+
+      it('can scan from the center of the cross', function() {
+        const matched = instance._scanAroundRecursively([
+          instance._getIndexedElement(1, 2),
+        ]);
+        sortIndexedElements(matched);
+
+        assert.deepEqual(matched, expected);
+      });
+    });
+
     describe('In the case of a combination of points or straight lines', function() {
       beforeEach(function() {
         this._matrix = createMatrixFromMapText([
