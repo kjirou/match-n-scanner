@@ -340,6 +340,73 @@ describe('lib/MatchNScanner', function() {
       });
     });
 
+    describe('options.minMatchLength', function() {
+      it('should be executed correctly', function() {
+        const matrix = createMatrixFromMapText([
+          'ABB',
+          'CCC',
+        ].join('\n'));
+        const instance = new MatchNScanner(matrix);
+
+        const matchesAbove2Length = instance.scan({minMatchLength: 2});
+        assert.deepEqual(matchesAbove2Length, [
+          [
+            {
+              element: 'B',
+              rowIndex: 0,
+              columnIndex: 1,
+            },
+            {
+              element: 'B',
+              rowIndex: 0,
+              columnIndex: 2,
+            },
+          ],
+          [
+            {
+              element: 'C',
+              rowIndex: 1,
+              columnIndex: 0,
+            },
+            {
+              element: 'C',
+              rowIndex: 1,
+              columnIndex: 1,
+            },
+            {
+              element: 'C',
+              rowIndex: 1,
+              columnIndex: 2,
+            },
+          ],
+        ]);
+
+        const matchesAbove3Length = instance.scan({minMatchLength: 3});
+        assert.deepEqual(matchesAbove3Length, [
+          [
+            {
+              element: 'C',
+              rowIndex: 1,
+              columnIndex: 0,
+            },
+            {
+              element: 'C',
+              rowIndex: 1,
+              columnIndex: 1,
+            },
+            {
+              element: 'C',
+              rowIndex: 1,
+              columnIndex: 2,
+            },
+          ],
+        ]);
+
+        const matchesAbove4Length = instance.scan({minMatchLength: 4});
+        assert.deepEqual(matchesAbove4Length, []);
+      });
+    });
+
     describe('options.sieve', function() {
       it('should be executed correctly', function() {
         const matrix = createMatrixFromMapText([
