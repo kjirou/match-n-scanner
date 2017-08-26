@@ -38,6 +38,23 @@ describe('lib/MatchNScanner', function() {
         'AAA',
       ].join('\n'));
       const instance = new MatchNScanner(matrix);
+      const expected = [
+        {
+          element: 'A',
+          rowIndex: 0,
+          columnIndex: 0,
+        },
+        {
+          element: 'A',
+          rowIndex: 0,
+          columnIndex: 1,
+        },
+        {
+          element: 'A',
+          rowIndex: 0,
+          columnIndex: 2,
+        },
+      ];
 
       it('can scan from the left', function() {
         const matched = instance._scanAroundRecursively([
@@ -45,23 +62,7 @@ describe('lib/MatchNScanner', function() {
         ]);
         sortIndexedElements(matched);
 
-        assert.deepEqual(matched, [
-          {
-            element: 'A',
-            rowIndex: 0,
-            columnIndex: 0,
-          },
-          {
-            element: 'A',
-            rowIndex: 0,
-            columnIndex: 1,
-          },
-          {
-            element: 'A',
-            rowIndex: 0,
-            columnIndex: 2,
-          },
-        ]);
+        assert.deepEqual(matched, expected);
       });
 
       it('can scan from the center', function() {
@@ -70,23 +71,7 @@ describe('lib/MatchNScanner', function() {
         ]);
         sortIndexedElements(matched);
 
-        assert.deepEqual(matched, [
-          {
-            element: 'A',
-            rowIndex: 0,
-            columnIndex: 0,
-          },
-          {
-            element: 'A',
-            rowIndex: 0,
-            columnIndex: 1,
-          },
-          {
-            element: 'A',
-            rowIndex: 0,
-            columnIndex: 2,
-          },
-        ]);
+        assert.deepEqual(matched, expected);
       });
 
       it('can scan from the right', function() {
@@ -95,23 +80,7 @@ describe('lib/MatchNScanner', function() {
         ]);
         sortIndexedElements(matched);
 
-        assert.deepEqual(matched, [
-          {
-            element: 'A',
-            rowIndex: 0,
-            columnIndex: 0,
-          },
-          {
-            element: 'A',
-            rowIndex: 0,
-            columnIndex: 1,
-          },
-          {
-            element: 'A',
-            rowIndex: 0,
-            columnIndex: 2,
-          },
-        ]);
+        assert.deepEqual(matched, expected);
       });
     });
 
@@ -122,6 +91,23 @@ describe('lib/MatchNScanner', function() {
         'A',
       ].join('\n'));
       const instance = new MatchNScanner(matrix);
+      const expected = [
+        {
+          element: 'A',
+          rowIndex: 0,
+          columnIndex: 0,
+        },
+        {
+          element: 'A',
+          rowIndex: 1,
+          columnIndex: 0,
+        },
+        {
+          element: 'A',
+          rowIndex: 2,
+          columnIndex: 0,
+        },
+      ];
 
       it('can scan from the top', function() {
         const matched = instance._scanAroundRecursively([
@@ -129,23 +115,7 @@ describe('lib/MatchNScanner', function() {
         ]);
         sortIndexedElements(matched);
 
-        assert.deepEqual(matched, [
-          {
-            element: 'A',
-            rowIndex: 0,
-            columnIndex: 0,
-          },
-          {
-            element: 'A',
-            rowIndex: 1,
-            columnIndex: 0,
-          },
-          {
-            element: 'A',
-            rowIndex: 2,
-            columnIndex: 0,
-          },
-        ]);
+        assert.deepEqual(matched, expected);
       });
 
       it('can scan from the center', function() {
@@ -154,23 +124,7 @@ describe('lib/MatchNScanner', function() {
         ]);
         sortIndexedElements(matched);
 
-        assert.deepEqual(matched, [
-          {
-            element: 'A',
-            rowIndex: 0,
-            columnIndex: 0,
-          },
-          {
-            element: 'A',
-            rowIndex: 1,
-            columnIndex: 0,
-          },
-          {
-            element: 'A',
-            rowIndex: 2,
-            columnIndex: 0,
-          },
-        ]);
+        assert.deepEqual(matched, expected);
       });
 
       it('can scan from the bottom', function() {
@@ -179,33 +133,56 @@ describe('lib/MatchNScanner', function() {
         ]);
         sortIndexedElements(matched);
 
-        assert.deepEqual(matched, [
-          {
-            element: 'A',
-            rowIndex: 0,
-            columnIndex: 0,
-          },
-          {
-            element: 'A',
-            rowIndex: 1,
-            columnIndex: 0,
-          },
-          {
-            element: 'A',
-            rowIndex: 2,
-            columnIndex: 0,
-          },
-        ]);
+        assert.deepEqual(matched, expected);
       });
     });
 
     describe('In the case of a box', function() {
       const matrix = createMatrixFromMapText([
-        'A',
-        'A',
-        'A',
+        'AA',
+        'AA',
       ].join('\n'));
       const instance = new MatchNScanner(matrix);
+      const expected = [
+        {
+          element: 'A',
+          rowIndex: 0,
+          columnIndex: 0,
+        },
+        {
+          element: 'A',
+          rowIndex: 0,
+          columnIndex: 1,
+        },
+        {
+          element: 'A',
+          rowIndex: 1,
+          columnIndex: 0,
+        },
+        {
+          element: 'A',
+          rowIndex: 1,
+          columnIndex: 1,
+        },
+      ];
+
+      it('can scan from the top-left', function() {
+        const matched = instance._scanAroundRecursively([
+          instance._getIndexedElement(0, 0),
+        ]);
+        sortIndexedElements(matched);
+
+        assert.deepEqual(matched, expected);
+      });
+
+      it('can scan from the bottom-right', function() {
+        const matched = instance._scanAroundRecursively([
+          instance._getIndexedElement(0, 0),
+        ]);
+        sortIndexedElements(matched);
+
+        assert.deepEqual(matched, expected);
+      });
     });
 
     describe('In the case of a combination of points or straight lines', function() {
